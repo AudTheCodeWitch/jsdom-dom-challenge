@@ -1,21 +1,15 @@
 let number = document.getElementById('counter');
 let counter = parseInt(number.innerText);
-let paused = false;
-let start = setInterval(startCounter, 1000);
-
-function startCounter() {
-    counter++;
-    number.innerText = counter.toString();
-}
+let interval;
 
 const autoIncrementCounter = function () {
-    if (paused === false) {
-        console.log('inside increment counter... resuming');
-        start;
-    } else {
-        console.log('still inside... pausing');
-        clearInterval(start)
-    }
+    console.log('inside autoCounter');
+    console.log(interval);
+    interval = setInterval(function () {
+        console.log('inside interval');
+        counter ++;
+        number.innerText = counter.toString();
+    }, 1000);
 };
 
 document.addEventListener( "DOMContentLoaded", function () {
@@ -26,25 +20,22 @@ let pause = document.getElementById('pause');
 let pauseCount = 0;
 
 const pauseCounter = function pauseCounter() {
-    paused = true;
-    clearInterval()
+    clearInterval(interval)
 };
 
 pause.addEventListener('click', function(){
     pauseCount ++;
     if (pauseCount % 2 === 0) {
-        paused = false;
         let resume = document.getElementById('resume');
         resume.innerText = 'pause';
         resume.id = 'pause';
         autoIncrementCounter();
-        console.log(pauseCount + ' paused', paused);
+        console.log(pauseCount + ' resumed');
     } else {
-        paused = true;
         pause.innerText = 'resume';
         pause.id = 'resume';
-        autoIncrementCounter();
-        console.log(pauseCount + ' paused', paused);
+        pauseCounter();
+        console.log(pauseCount + ' paused');
     }
 });
 
