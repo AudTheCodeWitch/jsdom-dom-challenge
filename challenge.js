@@ -22,7 +22,20 @@ plus.addEventListener("click", function() {
 
 const incrementCounter = function incrementCounter() {
     counter ++;
-    number.innerText = counter.toString()
+    number.innerText = counter.toString();
     console.log('incremented')
+
+};
+
+const minus = document.getElementById('minus');
+
+minus.addEventListener("click", function() {
+    decrementCounter()
+} );
+
+const decrementCounter = function decrementCounter() {
+    counter --;
+    number.innerText = counter.toString();
+    console.log('decremented')
 
 };
