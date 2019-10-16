@@ -39,3 +39,25 @@ const decrementCounter = function decrementCounter() {
     console.log('decremented')
 
 };
+
+const heart = document.getElementById('heart');
+const likes = document.getElementsByClassName('likes')[0];
+
+heart.addEventListener("click", function() {
+    likeCounter()
+} );
+
+const likeCounter = function likeCounter() {
+    number.innerText = counter.toString();
+    if (document.getElementById(counter.toString())) {
+        let li = document.getElementById(counter.toString());
+        let like = li.innerText.split(' ')[3];
+        like ++;
+        li.innerText = `${counter.toString()} was liked ${like} times!`;
+    } else {
+        let li = document.createElement('li');
+        li.id = counter.toString();
+        li.appendChild(document.createTextNode(`${counter.toString()} was liked 1 time!`));
+        likes.appendChild(li);
+    }
+};
