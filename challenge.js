@@ -3,10 +3,7 @@ let counter = parseInt(number.innerText);
 let interval;
 
 const autoIncrementCounter = function () {
-    console.log('inside autoCounter');
-    console.log(interval);
     interval = setInterval(function () {
-        console.log('inside interval');
         counter ++;
         number.innerText = counter.toString();
     }, 1000);
@@ -23,31 +20,37 @@ const pauseCounter = function pauseCounter() {
     clearInterval(interval)
 };
 
+const disableBtn = function() {
+    heart.disabled = true;
+    plus.disabled = true;
+    minus.disabled = true;
+    submit.disabled = true;
+};
+
+const enableBtn = function() {
+    heart.disabled = false;
+    plus.disabled = false;
+    minus.disabled = false;
+    submit.disabled = false;
+};
+
 pause.addEventListener('click', function(){
     pauseCount ++;
     if (pauseCount % 2 === 0) {
         let resume = document.getElementById('resume');
         resume.innerText = 'pause';
         resume.id = 'pause';
+        enableBtn();
         autoIncrementCounter();
         console.log(pauseCount + ' resumed');
     } else {
         pause.innerText = 'resume';
         pause.id = 'resume';
         pauseCounter();
+        disableBtn();
         console.log(pauseCount + ' paused');
     }
 });
-
-
-
-
-
-
-
-
-
-
 
 const plus = document.getElementById('plus');
 
@@ -55,9 +58,11 @@ plus.addEventListener("click", function() {
     incrementCounter()
 } );
 
+const heart = document.getElementById('heart');
 const incrementCounter = function incrementCounter() {
     counter ++;
     number.innerText = counter.toString();
+
     console.log('incremented')
 
 };
@@ -67,15 +72,13 @@ const minus = document.getElementById('minus');
 minus.addEventListener("click", function() {
     decrementCounter()
 } );
-
 const decrementCounter = function decrementCounter() {
     counter --;
     number.innerText = counter.toString();
+
     console.log('decremented')
 
 };
-
-const heart = document.getElementById('heart');
 const likes = document.getElementsByClassName('likes')[0];
 
 heart.addEventListener("click", function() {
@@ -96,3 +99,5 @@ const likeCounter = function likeCounter() {
         likes.appendChild(li);
     }
 };
+
+const submit = document.getElementById('submit');
