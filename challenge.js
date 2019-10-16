@@ -101,3 +101,15 @@ const likeCounter = function likeCounter() {
 };
 
 const submit = document.getElementById('submit');
+const commentsDiv = document.getElementById('list');
+const commentsUl = document.createElement('ul');
+commentsDiv.appendChild(commentsUl);
+
+const form = document.getElementById('comment-form');
+form.addEventListener('submit', function (event) {
+    let comment = document.getElementById('comment-input').value;
+    event.preventDefault();
+    let commentli = document.createElement('li');
+    commentli.appendChild(document.createTextNode(comment));
+    commentsUl.appendChild(commentli)
+});
