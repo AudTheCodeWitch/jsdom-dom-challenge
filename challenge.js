@@ -1,18 +1,62 @@
 let number = document.getElementById('counter');
 let counter = parseInt(number.innerText);
+let paused = false;
+let start = setInterval(startCounter, 1000);
+
+function startCounter() {
+    counter++;
+    number.innerText = counter.toString();
+}
+
+const autoIncrementCounter = function () {
+    if (paused === false) {
+        console.log('inside increment counter... resuming');
+        start;
+    } else {
+        console.log('still inside... pausing');
+        clearInterval(start)
+    }
+};
 
 document.addEventListener( "DOMContentLoaded", function () {
-    startCounter()
+    autoIncrementCounter()
 } );
 
-const startCounter = function startCounter() {
-    setInterval(function () {
-        counter ++;
-        number.innerText = counter.toString();
+let pause = document.getElementById('pause');
+let pauseCount = 0;
 
-    }, 1000);
-    console.log("Counter Started");
+const pauseCounter = function pauseCounter() {
+    paused = true;
+    clearInterval()
 };
+
+pause.addEventListener('click', function(){
+    pauseCount ++;
+    if (pauseCount % 2 === 0) {
+        paused = false;
+        let resume = document.getElementById('resume');
+        resume.innerText = 'pause';
+        resume.id = 'pause';
+        autoIncrementCounter();
+        console.log(pauseCount + ' paused', paused);
+    } else {
+        paused = true;
+        pause.innerText = 'resume';
+        pause.id = 'resume';
+        autoIncrementCounter();
+        console.log(pauseCount + ' paused', paused);
+    }
+});
+
+
+
+
+
+
+
+
+
+
 
 const plus = document.getElementById('plus');
 
